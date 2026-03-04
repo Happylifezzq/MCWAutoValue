@@ -188,6 +188,7 @@ public class ISOInjectionEntryPoints {
                                 mainTarget.getDepthTexture(),
                                 1.0
                             );
+                            Minecraft.getInstance().gameRenderer.extract(DeltaTracker.ONE, true);
                             Minecraft.getInstance().gameRenderer.renderLevel(DeltaTracker.ONE);
                             GpuBuffer buffer = RenderSystem.getDevice().createBuffer(
                                 () -> "SSHOT",

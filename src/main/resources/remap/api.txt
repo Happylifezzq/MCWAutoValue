@@ -59,6 +59,7 @@
 
 @package net.minecraft.client.renderer
     @class GameRenderer
+        @method extract(net.minecraft.client.DeltaTracker,Z) V
         @method renderLevel(net.minecraft.client.DeltaTracker) V
         @method getLighting() com.mojang.blaze3d.platform.Lighting
     @class Projection
