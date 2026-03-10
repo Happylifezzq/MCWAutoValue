@@ -164,12 +164,11 @@ public class BlockDataExtractor {
             BURN_ODDS.put(blockID, ((FireBlock) Blocks.FIRE).getBurnOdds(defaultBlockState));
             IGNITE_ODDS.put(blockID, ((FireBlock) Blocks.FIRE).getIgniteOdds(defaultBlockState));
 
-            Map<Property<?>, Comparable<?>> defaultStateMap = defaultBlockState.getValues();
             BLOCK_PROPERTIES.put(blockID);
-            for (Map.Entry<Property<?>, Comparable<?>> entry : defaultStateMap.entrySet()) {
-                Property property = entry.getKey();
-                BLOCK_PROPERTIES.putNew(blockID, revPropertyMap.get(property), property.getName(entry.getValue()));
-            }
+            defaultBlockState.getValues().forEach(val -> {
+                Property property = val.property();
+                BLOCK_PROPERTIES.putNew(blockID, revPropertyMap.get(property), property.getName(val.value()));
+            });
         }
 
         PUSH_REACTION_EXCEPT.putUnknown("piston");

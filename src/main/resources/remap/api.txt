@@ -331,9 +331,14 @@
     @class BlockStateProperties
     @enum NoteBlockInstrument
     @abstract Property <T::Ljava/lang/Comparable<TT;>;>Ljava/lang/Object;
+        @innerclass Value record static
         @virtual getPossibleValues() java.util.List ()Ljava/util/List<TT;>;
         @method getName() java.lang.String
         @virtual getName(java.lang.Comparable) java.lang.String (TT;)Ljava/lang/String;
+    @record Property$Value <T:Ljava/lang/Comparable<TT;>;>Ljava/lang/Record;
+        @outerclass record static
+        @component property -.Property Lnet/minecraft/world/level/block/state/properties/Property<TT;>;
+        @component value java.lang.Comparable TT;
 
 @package net.minecraft.world.level.block.state
     @class BlockBehaviour
@@ -371,7 +376,8 @@
     @class StateDefinition <O:Ljava/lang/Object;S:Ljava/lang/Object;>Ljava/lang/Object;
         @method getPossibleStates() com.google.common.collect.ImmutableList ()Lcom/google/common/collect/ImmutableList<TS;>;
     @abstract StateHolder <O:Ljava/lang/Object;S:Ljava/lang/Object;>Ljava/lang/Object;
-        @method getValues() java.util.Map ()Ljava/util/Map<Lnet/minecraft/world/level/block/state/properties/Property<*>;Ljava/lang/Comparable<*>;>;
+        @visitinner -.properties.Property$Value record static
+        @method getValues() java.util.stream.Stream ()Ljava/util/stream/Stream<Lnet/minecraft/world/level/block/state/properties/Property$Value<*>;>;
 
 @package net.minecraft.world.level.block
     @class Block extends -.state.BlockBehaviour impl net.minecraft.world.level.ItemLike
